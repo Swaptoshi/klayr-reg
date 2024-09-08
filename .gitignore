@@ -129,6 +129,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# config and env
+# config and keys
 
 **/config.json
+**/keys.json

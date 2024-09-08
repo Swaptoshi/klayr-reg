@@ -3,6 +3,8 @@
   "sideIpc": null,
   "mainWs": null,
   "sideWs": null,
+  "sideName": null,
+  "keys": null,
   "phrasePath": null,
   "mainPhrasePath": null,
   "sidePhrasePath": null,

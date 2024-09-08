@@ -4,8 +4,8 @@ import figlet from "figlet";
 import inquirer from "inquirer";
 import { createSpinner } from "nanospinner";
 import dotenv from "dotenv";
-import fs from "fs";
-import path from "path";
+import winston from "winston";
+import { registerSidechain, registerMainchain, loadJson } from "./lib";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -20,6 +20,7 @@ program
   .option("-v, --verbose", "Verbose mode")
   .option("-c, --config <path>", "Config file path")
   .option("--side-name <name>", "Sidechain name for registration")
+  .option("--keys <path>", "Sidechain validators keys lists")
   .option("--main-ipc <path>", "Mainchain IPC path")
   .option("--main-ws <url>", "Mainchain WebSocket URL")
   .option("--side-ipc <path>", "Sidechain IPC path")
@@ -44,11 +45,7 @@ program
 
 // Helper function to load the config file
 function loadConfig(configPath) {
-  const absPath = path.resolve(configPath);
-  if (fs.existsSync(absPath)) {
-    return JSON.parse(fs.readFileSync(absPath, "utf-8"));
-  }
-  return {};
+  return loadJson(configPath);
 }
 
 // Retrieve config, environment variables, or prompt user
@@ -118,6 +115,34 @@ async function getOptions() {
     if (options.verbose) {
       console.log(`Sidechain: Using ${sideIpc ? "IPC" : "WS"}`);
     }
+  }
+
+  // Get sidechain name
+  let sideName =
+    options.sideName || config.sideName || process.env.KLAYR_REG_SIDECHAIN_NAME;
+  if (!sideName) {
+    const sidechainNameAnswers = await inquirer.prompt([
+      {
+        type: "input",
+        name: "sideName",
+        message: "Enter sidechain name:",
+      },
+    ]);
+    sideName = sidechainNameAnswers.sideName;
+  }
+
+  // Get sidechain validator keys
+  let keys =
+    options.keys || config.keys || process.env.KLAYR_REG_SIDECHAIN_KEYS;
+  if (!keys) {
+    const sidechainKeysAnswers = await inquirer.prompt([
+      {
+        type: "input",
+        name: "keys",
+        message: "Enter sidechain validator keys path:",
+      },
+    ]);
+    keys = sidechainKeysAnswers.keys;
   }
 
   // Get phrase path
@@ -310,6 +335,8 @@ async function getOptions() {
     mainIpc,
     sideWs,
     mainWs,
+    sideName,
+    keys,
     phrasePath,
     mainPhrasePath,
     sidePhrasePath,
@@ -325,8 +352,19 @@ async function getOptions() {
 
 async function run() {
   const options = await getOptions();
-
-  const spinner = createSpinner("Running Klayr Registration...").start();
+  const logger = winston.createLogger({
+    level: options.verbose ? "verbose" : "info",
+    format: winston.format.combine(
+      winston.format.timestamp(),
+      winston.format.json()
+    ),
+    transports: [
+      new winston.transports.File({
+        filename: "klayr-reg.error.log",
+        level: "warn",
+      }),
+    ],
+  });
 
   if (options.verbose) {
     console.log("\n");
@@ -335,11 +373,17 @@ async function run() {
     console.log("\n");
   }
 
-  setTimeout(() => {
-    spinner.success({ text: "Registration completed!" });
-  }, 2000);
+  const registerSidechainSpinner = createSpinner("Registering sidechain...");
+  registerSidechainSpinner.start();
+  await registerSidechain(logger, options);
+  registerSidechainSpinner.success({ text: "Registration completed!" });
 
-  // TODO: implement run
+  const registerMainchainSpinner = createSpinner("Registering mainchain...");
+  registerMainchainSpinner.start();
+  await registerMainchain(logger, options);
+  registerMainchainSpinner.success({ text: "Registration completed!" });
+
+  process.exit(0);
 }
 
 run();
