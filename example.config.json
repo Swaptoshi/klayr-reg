@@ -1,0 +1,15 @@
+{
+  "mainIpc": null,
+  "sideIpc": null,
+  "mainWs": null,
+  "sideWs": null,
+  "phrasePath": null,
+  "mainPhrasePath": null,
+  "sidePhrasePath": null,
+  "relayerPhrase": null,
+  "mainRelayerPhrase": null,
+  "sideRelayerPhrase": null,
+  "ccPass": null,
+  "mainCcPass": null,
+  "sideCcPass": null
+}
