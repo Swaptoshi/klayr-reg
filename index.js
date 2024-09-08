@@ -316,6 +316,7 @@ async function getOptions() {
     relayerPhrase,
     mainRelayerPhrase,
     sideRelayerPhrase,
+    authorizeCc: !!authorizeCc,
     ccPass,
     mainCcPass,
     sideCcPass,

@@ -9,6 +9,7 @@
   "relayerPhrase": null,
   "mainRelayerPhrase": null,
   "sideRelayerPhrase": null,
+  "authorizeCc": null,
   "ccPass": null,
   "mainCcPass": null,
   "sideCcPass": null
