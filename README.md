@@ -16,32 +16,29 @@ Ensure that you have the following installed:
 - Node.js (>= 14.x)
 - NPM (Node Package Manager)
 
-## Installation
-
-To build Klayr-REG CLI from source and install globally, clone the repository, install dependencies, and install globally:
-
-```bash
-git clone https://github.com/swaptoshi/klayr-reg
-cd klayr-reg
-npm install
-npm install -g .
-```
-
-Once installed globally, you can use the `klayr-reg` command.
-
 ## Usage
 
-After installation, you can run the CLI using the following command:
+Use Klayr-REG easily using `npx`:
 
 ```bash
-klayr-reg [options]
+npx klayr-reg [options]
 ```
 
-### Example
+Example:
 
 ```bash
-klayr-reg --prompt-path --authorize-cc
+npx klayr-reg --prompt-path --authorize-cc
 ```
+
+## Install GLobally
+
+To install Klayr-REG globally, execute following command:
+
+```bash
+npm install -g klayr-reg
+```
+
+Once installed globally, you can use the `klayr-reg` command without `npx`.
 
 ## Options
 
@@ -91,8 +88,21 @@ If any of the required options are missing, the CLI will prompt you for input in
 For more detailed logs, use the `--verbose` flag:
 
 ```bash
-./klayr-reg --verbose
+npx klayr-reg --verbose
 ```
+
+## Build From Source
+
+To build Klayr-REG CLI from source, clone the repository, install dependencies, and install globally:
+
+```bash
+git clone https://github.com/swaptoshi/klayr-reg
+cd klayr-reg
+npm install
+npm install -g .
+```
+
+Once installed globally, you can use the `klayr-reg` command.
 
 ## License
 
