@@ -133,3 +133,7 @@ dist
 
 **/config.json
 **/keys.json
+
+# npm rc
+
+.npmrc
