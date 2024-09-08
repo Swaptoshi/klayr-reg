@@ -87,11 +87,6 @@ async function getOptions() {
     mainWs = mainIpcWsAnswer.mainIpcOrWs.startsWith("ws")
       ? mainIpcWsAnswer.mainIpcOrWs
       : null;
-
-    // TODO: prints mainchain node info on verbose mode
-    if (options.verbose) {
-      console.log(`Mainchain: Using ${mainIpc ? "IPC" : "WS"}`);
-    }
   }
 
   // If neither IPC nor WS are provided, ask for them
@@ -110,11 +105,6 @@ async function getOptions() {
     sideWs = sideIpcWsAnswer.sideIpcOrWs.startsWith("ws")
       ? sideIpcWsAnswer.sideIpcOrWs
       : null;
-
-    // TODO: prints sidechain node info on verbose mode
-    if (options.verbose) {
-      console.log(`Sidechain: Using ${sideIpc ? "IPC" : "WS"}`);
-    }
   }
 
   // Get sidechain name
@@ -254,11 +244,6 @@ async function getOptions() {
       mainRelayerAnswers.mainRelayerPhrase ||
       mainRelayerPhrase;
 
-    // TODO: prints mainchain relayer information
-    if (options.verbose) {
-      console.log(`Mainchain relayer: TODO`);
-    }
-
     const sideRelayerAnswers = await inquirer.prompt([
       {
         type: "password",
@@ -271,11 +256,6 @@ async function getOptions() {
       relayerAnswers.relayerPhrase ||
       sideRelayerAnswers.sideRelayerPhrase ||
       sideRelayerPhrase;
-
-    // TODO: prints sidechain relayer information
-    if (options.verbose) {
-      console.log(`Sidechain relayer: TODO`);
-    }
   }
 
   // Get CC Password
