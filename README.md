@@ -18,11 +18,12 @@ Ensure that you have the following installed:
 
 ## Installation
 
-To build Klayr-REG CLI from source and install globally, clone the repository and install:
+To build Klayr-REG CLI from source and install globally, clone the repository, install dependencies, and install globally:
 
 ```bash
 git clone https://github.com/swaptoshi/klayr-reg
 cd klayr-reg
+npm install
 npm install -g .
 ```
 
