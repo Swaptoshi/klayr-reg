@@ -30,7 +30,7 @@ Example:
 npx klayr-reg --prompt-path --authorize-cc
 ```
 
-## Install GLobally
+## Install Globally
 
 To install Klayr-REG globally, execute following command:
 
