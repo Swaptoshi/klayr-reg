@@ -1,6 +1,6 @@
 {
   "name": "klayr-reg",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Klayr Sidechain Registration CLI Tools",
   "main": "index.js",
   "type": "module",
@@ -29,7 +29,6 @@
     "index.js",
     "LICENSE",
     "package.json",
-    "package-lock.json",
     "README.md"
   ],
   "homepage": "https://github.com/Swaptoshi/klayr-reg#readme",
@@ -38,7 +37,7 @@
     "dotenv": "^16.4.5",
     "figlet": "^1.7.0",
     "inquirer": "^10.2.2",
-    "klayr-sdk": "^6.0.4",
+    "klayr-sdk": "6.0.4",
     "nanospinner": "^1.1.0",
     "winston": "^3.14.2"
   }
