@@ -24,6 +24,13 @@
   "bugs": {
     "url": "https://github.com/Swaptoshi/klayr-reg/issues"
   },
+  "files": [
+    "lib",
+    "index.js",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "homepage": "https://github.com/Swaptoshi/klayr-reg#readme",
   "dependencies": {
     "commander": "^12.1.0",
