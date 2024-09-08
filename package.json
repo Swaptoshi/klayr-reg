@@ -7,6 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "klayr-reg": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Swaptoshi/klayr-reg.git"
