@@ -366,19 +366,38 @@ async function run() {
   logger.verbose("Options used for run command:");
   logger.verbose(JSON.stringify(options));
 
-  const registerSidechainSpinner = createSpinner("Registering sidechain...\n");
-  registerSidechainSpinner.start();
-  await registerSidechain(logger, options);
-  registerSidechainSpinner.success({
-    text: "Sidechain registration completed!",
-  });
+  let registerSidechainSpinner;
 
-  const registerMainchainSpinner = createSpinner("Registering mainchain...\n");
-  registerMainchainSpinner.start();
+  if (!options.verbose) {
+    registerSidechainSpinner = createSpinner("Registering sidechain...");
+    registerSidechainSpinner.start();
+  }
+
+  await registerSidechain(logger, options);
+
+  if (!options.verbose) {
+    registerSidechainSpinner.success({
+      text: "Sidechain registration completed!",
+    });
+  }
+
+  let registerMainchainSpinner;
+
+  if (!options.verbose) {
+    registerMainchainSpinner = createSpinner("Registering mainchain...");
+    registerMainchainSpinner.start();
+  }
+
   await registerMainchain(logger, options);
-  registerMainchainSpinner.success({
-    text: "Mainchain registration completed!",
-  });
+
+  if (!options.verbose) {
+    registerMainchainSpinner.success({
+      text: "Mainchain registration completed!",
+    });
+  }
+
+  console.log("\n");
+  console.log("Klayr-REG Executed Successfully! 🚀");
 
   process.exit(0);
 }
