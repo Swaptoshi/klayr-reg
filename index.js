@@ -4,8 +4,8 @@ import figlet from "figlet";
 import inquirer from "inquirer";
 import { createSpinner } from "nanospinner";
 import dotenv from "dotenv";
-import winston from "winston";
-import { registerSidechain, registerMainchain, loadJson } from "./lib";
+import * as winston from "winston";
+import { registerSidechain, registerMainchain, loadJson } from "./lib/index.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -355,33 +355,30 @@ async function run() {
   const logger = winston.createLogger({
     level: options.verbose ? "verbose" : "info",
     format: winston.format.combine(
-      winston.format.timestamp(),
-      winston.format.json()
+      winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+      winston.format.printf(({ level, message, timestamp }) => {
+        return `${timestamp} [${level}]: ${message}`;
+      })
     ),
-    transports: [
-      new winston.transports.File({
-        filename: "klayr-reg.error.log",
-        level: "warn",
-      }),
-    ],
+    transports: [new winston.transports.Console()],
   });
 
-  if (options.verbose) {
-    console.log("\n");
-    console.log("Options used for run command:");
-    console.log(options);
-    console.log("\n");
-  }
+  logger.verbose("Options used for run command:");
+  logger.verbose(JSON.stringify(options));
 
-  const registerSidechainSpinner = createSpinner("Registering sidechain...");
+  const registerSidechainSpinner = createSpinner("Registering sidechain...\n");
   registerSidechainSpinner.start();
   await registerSidechain(logger, options);
-  registerSidechainSpinner.success({ text: "Registration completed!" });
+  registerSidechainSpinner.success({
+    text: "Sidechain registration completed!",
+  });
 
-  const registerMainchainSpinner = createSpinner("Registering mainchain...");
+  const registerMainchainSpinner = createSpinner("Registering mainchain...\n");
   registerMainchainSpinner.start();
   await registerMainchain(logger, options);
-  registerMainchainSpinner.success({ text: "Registration completed!" });
+  registerMainchainSpinner.success({
+    text: "Mainchain registration completed!",
+  });
 
   process.exit(0);
 }
