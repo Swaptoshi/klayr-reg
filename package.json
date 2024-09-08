@@ -1,0 +1,32 @@
+{
+  "name": "klayr-reg",
+  "version": "1.0.0",
+  "description": "Klayr Sidechain Registration CLI Tools",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swaptoshi/klayr-reg.git"
+  },
+  "keywords": [
+    "klayr",
+    "blockchain",
+    "sidechain"
+  ],
+  "author": "swaptoshi",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Swaptoshi/klayr-reg/issues"
+  },
+  "homepage": "https://github.com/Swaptoshi/klayr-reg#readme",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5",
+    "figlet": "^1.7.0",
+    "inquirer": "^10.2.2",
+    "nanospinner": "^1.1.0"
+  }
+}
