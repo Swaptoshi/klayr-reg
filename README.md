@@ -65,6 +65,8 @@ Below is a list of all available options and their corresponding environment var
 | `--phrase-path <path>`           | Phrase path for both chains                  | `KLAYR_REG_PHRASE_PATH`              |
 | `--main-phrase-path <path>`      | Phrase path for mainchain                    | `KLAYR_REG_MAINCHAIN_PHRASE_PATH`    |
 | `--side-phrase-path <path>`      | Phrase path for sidechain                    | `KLAYR_REG_SIDECHAIN_PHRASE_PATH`    |
+| `--register-mainchain-fee <fee>` | Custom registerMainchain transaction fee     | `KLAYR_REG_REGISTER_MAINCHAIN_FEE`   |
+| `--register-sidechain-fee <fee>` | Custom registerSidechain transaction fee     | `KLAYR_REG_REGISTER_SIDECHAIN_FEE`   |
 
 ## Configuration with `.env`
 

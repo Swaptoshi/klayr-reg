@@ -41,7 +41,15 @@ program
   .option("--prompt-path", "Prompt to set phrase path")
   .option("--phrase-path <path>", "Phrase path for both chains")
   .option("--main-phrase-path <path>", "Phrase path for mainchain")
-  .option("--side-phrase-path <path>", "Phrase path for sidechain");
+  .option("--side-phrase-path <path>", "Phrase path for sidechain")
+  .option(
+    "--register-mainchain-fee <fee>",
+    "Custom registerMainchain transaction fee"
+  )
+  .option(
+    "--register-sidechain-fee <fee>",
+    "Custom registerSidechain transaction fee"
+  );
 
 // Helper function to load the config file
 function loadConfig(configPath) {
@@ -309,6 +317,16 @@ async function getOptions() {
     sideCcPass = ccAnswers.ccPass || ccAnswers.sideCcPass || sideCcPass;
   }
 
+  // Get transaction fee
+  let registerMainchainFee =
+    options.registerMainchainFee ||
+    config.registerMainchainFee ||
+    process.env.KLAYR_REG_REGISTER_MAINCHAIN_FEE;
+  let registerSidechainFee =
+    options.registerSidechainFee ||
+    config.registerSidechainFee ||
+    process.env.KLAYR_REG_REGISTER_SIDECHAIN_FEE;
+
   return {
     verbose: options.verbose,
     sideIpc,
@@ -327,6 +345,8 @@ async function getOptions() {
     ccPass,
     mainCcPass,
     sideCcPass,
+    registerMainchainFee,
+    registerSidechainFee,
   };
 }
 

@@ -14,5 +14,7 @@
   "authorizeCc": null,
   "ccPass": null,
   "mainCcPass": null,
-  "sideCcPass": null
+  "sideCcPass": null,
+  "registerMainchainFee": null,
+  "registerSidechainFee": null
 }
