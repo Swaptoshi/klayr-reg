@@ -1,6 +1,6 @@
 {
   "name": "klayr-reg",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Klayr Sidechain Registration CLI Tools",
   "main": "index.js",
   "type": "module",
