@@ -6,7 +6,8 @@ import { createSpinner } from "nanospinner";
 import dotenv from "dotenv";
 import * as winston from "winston";
 import { registerSidechain, registerMainchain, loadJson } from "./lib/index.js";
-import { version } from "./package.json";
+
+const pJson = loadJson("./package.json");
 
 // Load environment variables from .env file
 dotenv.config();
@@ -16,7 +17,7 @@ const program = new Command();
 // CLI Option Definitions
 program
   .name("klayr-reg")
-  .version(version)
+  .version(pJson.version)
   .description("CLI for Klayr Registration")
   .option("-v, --verbose", "Verbose mode")
   .option("-c, --config <path>", "Config file path")
