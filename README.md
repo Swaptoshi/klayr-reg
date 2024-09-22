@@ -68,6 +68,45 @@ Below is a list of all available options and their corresponding environment var
 | `--register-mainchain-fee <fee>` | Custom registerMainchain transaction fee     | `KLAYR_REG_REGISTER_MAINCHAIN_FEE`   |
 | `--register-sidechain-fee <fee>` | Custom registerSidechain transaction fee     | `KLAYR_REG_REGISTER_SIDECHAIN_FEE`   |
 
+## Configuration with `config.json` file
+
+You can also use a `config.json` file to store the options. For example:
+
+```json
+{
+  "mainIpc": "~/.klayr/klayr-core",
+  "sideIpc": "~/.klayr/swaptoshi-core",
+  "mainWs": null,
+  "sideWs": null,
+  "sideName": "swaptoshi",
+  "keys": "./keys.json",
+  "phrasePath": null,
+  "mainPhrasePath": null,
+  "sidePhrasePath": null,
+  "relayerPhrase": null,
+  "mainRelayerPhrase": "minute omit local rare sword knee banner pair rib museum shadow juice",
+  "sideRelayerPhrase": "luxury thought scan moral glance thrive hurt cable found twelve share dolphin",
+  "authorizeCc": true,
+  "ccPass": "lisk",
+  "mainCcPass": null,
+  "sideCcPass": null,
+  "registerMainchainFee": null,
+  "registerSidechainFee": "2000000000"
+}
+```
+
+Then specify the path to `config.json` file using the config flag when you run klayr-reg:
+
+```bash
+npx klayr-reg -c <path-to-config>
+```
+
+You can use the `KLAYR_REG_CONFIG` env variable as well:
+
+```bash
+KLAYR_REG_CONFIG=<path-to-config> npx klayr-reg
+```
+
 ## Configuration with `.env`
 
 You can also use a `.env` file to store the options. For example:
